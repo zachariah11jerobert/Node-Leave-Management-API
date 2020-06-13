@@ -41,7 +41,7 @@ router.route('/:id').delete((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/update/:id').post((req, res) => {
+router.route('/update/:id').put((req, res) => {
   Leave.findById(req.params.id)
     .then(leave => {
       leave.applierId = req.body.applierId;
