@@ -15,7 +15,7 @@ router.route('/add').post((req, res) => {
   const leaveEndDate = Date.parse(req.body.leaveEndDate);
   const reasonForLeave = req.body.reasonForLeave;
 
-  const newLeave = new Exercise({
+  const newLeave = new Leave({
     applierId,
     applyingDate,
     leaveTypeId,
