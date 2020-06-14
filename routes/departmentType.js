@@ -1,9 +1,9 @@
 const router = require('express').Router();
-let DepartmenType= require('../models/departmentType.model');
+let DepartmentType= require('../models/departmentType.model');
 
 
 router.route('/').get((req,res)=>{
-    DepartmenType.find()
+    DepartmentType.find()
     .then(departmenttype=>res.json(departmenttype))
      .catch(err=>res.status(400).json('Error'+err));
 
@@ -11,32 +11,34 @@ router.route('/').get((req,res)=>{
 
 router.route('/add').post((req,res)=>{
     const departmentType=req.body.departmentType;
+    const departmentId=req.body.departmentId;
 
-    const newDepartmentType= new DepartmenType({
-        departmentType
+    const newDepartmentType= new DepartmentType({
+        departmentType,
+        departmentId
     });
     newDepartmentType.save()
     .then(() => res.json('New Department Type Added Succefully!'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.router('/:id').get((req, res) =>{
-    DepartmenType.findById(req.params.id)
+router.route('/:id').get((req, res) =>{
+    DepartmentType.findById(req.params.id)
     .then(departmenttype => res.json(departmenttype))
     .catch(err => res.status(400).json('Error: ' + err));
 
 });
 
 router.route('/:id').delete((req, res) => {
-    DepartmenType.findByIdAndDelete(req.params.id)
+    DepartmentType.findByIdAndDelete(req.params.id)
       .then(() => res.json('Department Type deleted.'))
       .catch(err => res.status(400).json('Error: ' + err));
   });
 
   router.route('/update/:id').put((req, res) => {
-    DepartmenType.findById(req.params.id)
+    DepartmentType.findById(req.params.id)
     .then(departmenttype => {
-      departmenttype.departmenType = req.body.departmenType;
+      departmenttype.departmentType = req.body.departmentType;
   
       departmenttype.save()
           .then(() => res.json('department Type updated!'))
