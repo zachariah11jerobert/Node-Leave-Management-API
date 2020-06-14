@@ -21,10 +21,12 @@ connection.once('open', () => {
 const leavesRouter = require('./routes/leaves');
 const employeesRouter = require('./routes/employees');
 const leavetypesRouter = require('./routes/leaveTypes');
+const departmenttypesRouter = require ('./routes/departmentType')
 
 app.use('/leaves', leavesRouter);
 app.use('/employees', employeesRouter);
 app.use('/leavetypes', leavetypesRouter);
+app.use('./departmenttypes',departmenttypesRouter)
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);

@@ -39,7 +39,7 @@ router.route('/:id').delete((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/update/:id').put((req, res) => {
+router.route('/update/:id').post((req, res) => {
   Employee.findById(req.params.id)
   .then(employee => {
     employee.employeeId = req.body.employeeId;
